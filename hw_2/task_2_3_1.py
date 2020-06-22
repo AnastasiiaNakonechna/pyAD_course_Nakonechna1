@@ -37,6 +37,5 @@ def file_open():
     return f'height av: {av_h}; weight av: {av_w}'
 
 
-
 if __name__ == "__main__":
     app.run(port=5092)

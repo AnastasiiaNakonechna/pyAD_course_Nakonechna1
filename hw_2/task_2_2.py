@@ -21,6 +21,5 @@ def generate_users() -> str:
     return f
 
 
-
 if __name__ == "__main__":
     app.run(port=5087)
