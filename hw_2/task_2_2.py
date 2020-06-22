@@ -13,12 +13,13 @@ def generate_users() -> str:
     fake.email()
 
     f = ''
-
     for _ in range(length):
 
         f += fake.name()+' '+fake.email()
-        print(f)
+        #print(f)
+
     return f
+
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 import csv
 from flask import Flask
+#from statistics import median
 
 app = Flask(__name__)
 
@@ -8,32 +9,33 @@ app = Flask(__name__)
 def file_open():
     with open('hw.csv') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-        #headers = next(spamreader, None)
-        #print(headers)
+
+        w = []  # weight
+        h = []  # height
 
         for index, row in enumerate(spamreader):
-            w = []  # weight
-            h = []  # height
 
             if index == 0:
                 continue
             if row:
                 str_lst = row
                 #замена Weight(Pounds) для расчета - данные всех записей csv
-                new_row = w.append(int(float(row[2]) // 1 * 0.453592))
-
-                print(w)
-
+                w.append(int(float(row[2]) // 1 * 0.453592))
 
                 #замена Height(Inches) для расчета - данные всех записей csv
-                new_row2 = h.append((int(float(str_lst[1].replace(',', '')) // 1 * 2.54)))
-                #h = ''.join(new_row2)
+                h.append((int(float(str_lst[1].replace(',', '')) // 1 * 2.54)))
 
-                print(h)
+    av_h = sum(h) / len(h)
+    #min_h = min(h)
+    #max_h = max(h)
+    #median_h = median(h)
 
-                #print(row)
+    av_w = sum(w) / len(w)
+    #min_w = min(w)
+    #max_w = max(w)
+    #median_w = median(w)
+    return f'height av: {av_h}; weight av: {av_w}'
 
-        return 'OK'
 
 
 if __name__ == "__main__":
